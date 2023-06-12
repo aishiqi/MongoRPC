@@ -10,7 +10,7 @@
   "author": "aishiqi",
   "dependencies": {
     "log4js": "^6.9.1",
-    "mongodb": "^5.6.0",
+    "mongodb": "^5.5.0",
     "sleep-promise": "^9.1.0"
   },
   "scripts": {
