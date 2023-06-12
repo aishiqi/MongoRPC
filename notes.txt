@@ -1,0 +1,57 @@
+
+Performance Test:
+
+
+[2023-06-10T10:27:55.336] [DEBUG] MongoRPC - Inserting message
+[2023-06-10T10:27:55.626] [DEBUG] MongoRPC - acquiring lock
+[2023-06-10T10:27:55.629] [DEBUG] MongoRPC - Inserting message Done
+
+300ms
+
+[2023-06-10T10:27:55.674] [DEBUG] MongoRPC - acquired lock
+
+30ms
+
+[2023-06-10T10:27:55.675] [DEBUG] MongoRPC - Updating message to CompletedSuccess
+[2023-06-10T10:27:55.723] [DEBUG] MongoRPC - Updated message to CompletedSuccess
+
+50ms
+
+[2023-06-10T10:27:55.728] [DEBUG] MongoRPC - calling client callback
+
+5ms
+
+[2023-06-10T10:27:55.729] [DEBUG] MongoRPC - deleting request
+[2023-06-10T10:27:55.772] [DEBUG] MongoRPC - deleted request
+
+50ms
+
+
+We request twice, still not good, insertOne is too slow (300ms), could be related to cluster replication.
+
+[2023-06-10T10:33:44.066] [DEBUG] MongoRPC - Inserting message
+[2023-06-10T10:33:44.383] [DEBUG] MongoRPC - Inserting message Done
+[2023-06-10T10:33:44.386] [DEBUG] MongoRPC - acquiring lock
+[2023-06-10T10:33:44.432] [DEBUG] MongoRPC - acquired lock
+[2023-06-10T10:33:44.433] [INFO] MongoRPC - arguments from client
+[2023-06-10T10:33:44.434] [DEBUG] MongoRPC - Updating message to CompletedSuccess
+[2023-06-10T10:33:44.487] [DEBUG] MongoRPC - Updated message to CompletedSuccess
+[2023-06-10T10:33:44.487] [DEBUG] MongoRPC - calling client callback
+[2023-06-10T10:33:44.488] [DEBUG] MongoRPC - deleting request
+[2023-06-10T10:33:44.489] [INFO] MongoRPC - Success from server.
+
+[2023-06-10T10:33:44.489] [INFO] MongoRPC - ==========
+
+[2023-06-10T10:33:44.490] [DEBUG] MongoRPC - Inserting message
+[2023-06-10T10:33:44.534] [DEBUG] MongoRPC - deleted request
+[2023-06-10T10:33:44.778] [DEBUG] MongoRPC - acquiring lock
+[2023-06-10T10:33:44.781] [DEBUG] MongoRPC - Inserting message Done
+[2023-06-10T10:33:44.828] [DEBUG] MongoRPC - acquired lock
+
+[2023-06-10T10:33:44.829] [INFO] MongoRPC - arguments from client
+[2023-06-10T10:33:44.829] [DEBUG] MongoRPC - Updating message to CompletedSuccess
+[2023-06-10T10:33:44.877] [DEBUG] MongoRPC - Updated message to CompletedSuccess
+[2023-06-10T10:33:44.878] [DEBUG] MongoRPC - calling client callback
+[2023-06-10T10:33:44.878] [DEBUG] MongoRPC - deleting request
+[2023-06-10T10:33:44.879] [INFO] MongoRPC - Success from server.
+[2023-06-10T10:33:44.921] [DEBUG] MongoRPC - deleted request
