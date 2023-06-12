@@ -196,7 +196,7 @@ export class MongoRPC {
         })
     }
 
-    public async call(method: string, args: any): Promise<string> {
+    public async call(method: string, args: any): Promise<any> {
         let message: Message = {
             _id: new ObjectId(),
             channel: this.channel,

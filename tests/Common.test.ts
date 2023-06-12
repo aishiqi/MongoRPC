@@ -123,4 +123,30 @@ describe('Common', function () {
         }
     });
 
+    it('Should be able to handle concurrent server subscribers', async function () {
+        let methodName = "helloWorld";
+        let sendArguments = "arguments from client";
+        let receiveArguments = "arguments from server";
+
+        let mongoRPCTest2 = new MongoRPCTest();
+        await mongoRPCTest2.initServerAndClient();
+        await sleep(100);
+
+        let serverInvokeCount = 0;
+        mongoRPCTest.server.subscribe(methodName, async (args) => {
+            expect(args).to.equal(sendArguments);
+            serverInvokeCount++;
+            return receiveArguments;
+        });
+
+        mongoRPCTest2.server.subscribe(methodName, async (args) => {
+            expect(args).to.equal(sendArguments);
+            serverInvokeCount++;
+            return receiveArguments;
+        });
+
+        let result = await mongoRPCTest.client.call(methodName, sendArguments);
+        expect(result).to.equal(receiveArguments);
+        expect(serverInvokeCount).to.equal(1);
+    });
 });
